@@ -68,9 +68,8 @@ Access Freshchat variable in the development as below
  The following optional boolean parameters can be passed to the init Object
  -  cameraCaptureEnabled
  -  gallerySelectionEnabled 
- -  voiceMessagingEnabled _(ios only)_
- -  pictureMessagingEnabled _(ios only)_
- -  teamMemberInfoVisible _(ios only)_
+ -  teamMemberInfoVisible 
+ -  notificationSoundEnabled _(ios only)_
  -  showNotificationBanner _(ios only)_
 
  Here is a sample init code with the optional parameters
@@ -80,11 +79,8 @@ Access Freshchat variable in the development as below
     appId       : "<Your App Id>",
     appKey      : "<Your App Key>",
     gallerySelectionEnabled   : true,
-    cameraCaptureEnabled      : false,
-    voiceMessagingEnabled     : true,
-    pictureMessagingEnabled   : true,
-    teamMemberInfoVisible     : true,
-    showNotificationBanner    : true
+    cameraCaptureEnabled      : true,
+    teamMemberInfoVisible     : true
 });
 ```
  The init function is also a callback function and can be implemented like so:
@@ -93,10 +89,9 @@ Access Freshchat variable in the development as below
  window.Freshchat.init({
       appId       : "<Your App Id>",
       appKey      : "<Your App Key>",
-      agentAvatarEnabled      : true,
-      cameraCaptureEnabled    : false,
-      voiceMessagingEnabled   : true,
-      pictureMessagingEnabled : true
+      gallerySelectionEnabled      : true,
+      cameraCaptureEnabled    : true,
+      teamMemberInfoVisible   : true,
   }, function(success){
       console.log("This is called form the init callback");
   });

@@ -45,6 +45,23 @@ function initializePush() {
         "windows": {}
     });
 }
+
+For ionic 2 & 3 
+
+function initializePush() {
+    var push = (window as any).PushNotification.init({
+        "android":{
+            "senderID":"XXXXXXXXXX"
+        },
+        "ios": {
+            "alert": "true",
+            "badge": "true",
+            "sound": "true"
+        },
+        "windows": {}
+    });
+}
+
 ```
 
 Android notification properties can be changed with the updateAndroidNotificationProperties API. The properties that can be updated are.
