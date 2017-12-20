@@ -33,10 +33,6 @@ You can add the plugin from command line like:
 ```shell
 cordova plugin add https://github.com/techaffinity/freshchat-phonegap.git
 ```
-You can also add it to your config.xml like 
-```javascript
-<plugin name="Freshchat" source="npm"/>
-```
 
 ### Initializing the plugin
 
