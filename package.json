@@ -13,7 +13,7 @@
     "devDependencies": {},
     "repository": {
         "type": "git",
-        "url": "git+https://github.com/techaffinity/freshchat-phonegap.git"
+        "url": "https://github.com/techaffinity/freshchat-phonegap"
     },
     "keywords": [
         "freshdesk",
