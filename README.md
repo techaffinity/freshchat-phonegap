@@ -188,7 +188,6 @@ view filtered by the tag "test".
 {
    "name" : "John Doe",
    "email" : "johndoe@dead.man",
-   "externalId" : "some unique Identifier from your system",
    "countryCode" : "+91",
    "phoneNumber" : "1234234123"
 }
