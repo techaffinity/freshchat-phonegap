@@ -11,19 +11,19 @@ add the server key for Android and the push certificate for iOS.
 ###Plugin Side
 
 We support push notifications through a forked version of the phonegap push plugin 
-found [here](https://github.com/techaffinity/phonegap-plugin-push).
+found [here](https://github.com/freshdesk/phonegap-plugin-push).
 
 It can be installed by the following command : 
 ```shell
-cordova plugin add https://github.com/techaffinity/phonegap-plugin-push.git
+cordova plugin add https://github.com/freshdesk/phonegap-plugin-push.git
 ```
 If you are setting it up for Android as well, add the Sender Id as well, so the command would look like:
 ```shell
-cordova plugin add https://github.com/techaffinity/phonegap-plugin-push.git --variable SENDER_ID=20738924380
+cordova plugin add https://github.com/freshdesk/phonegap-plugin-push.git --variable SENDER_ID=20738924380
 ```
 Plugin can also be added from config.xml as follows:
 ```javascript
-<plugin name="phonegap-plugin-push" spec="https://github.com/techaffinity/phonegap-plugin-push.git">
+<plugin name="phonegap-plugin-push" spec="https://github.com/freshdesk/phonegap-plugin-push.git">
         <param name="SENDER_ID" value="XXXXXXXXXX" />
     </plugin>
 ```

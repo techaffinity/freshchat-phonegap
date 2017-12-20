@@ -58,7 +58,7 @@ Freshchat.init = function(args, cb) {
 }
 
 Freshchat.trackPhoneGapSDKVersion = function() {
-    this.updateUserProperties({ Phonegap: "v1.0.0" });
+    this.updateUserProperties({ Phonegap: "v1.1.0" });
 }
 
 Freshchat.clearUserData = function() {
