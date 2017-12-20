@@ -1,0 +1,45 @@
+{
+    "name": "Freshchat",
+    "version": "1.0.0",
+    "description": "Plugin for integrating the Freshchat SDK into a Phonegap/Cordova project",
+    "cordova": {
+        "id": "cordova-plugin-freshchat",
+        "platforms": [
+            "android",
+            "ios"
+        ]
+    },
+    "dependencies": {},
+    "devDependencies": {},
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/techaffinity/freshchat-phonegap.git"
+    },
+    "keywords": [
+        "freshdesk",
+        "freshchat",
+        "techaffinity"
+        "ecosystem:cordova",
+        "cordova-android",
+        "cordova-ios",
+        "faq",
+        "chat",
+        "support"
+    ],
+    "engines": [{
+            "name": "cordova-android",
+            "version": ">=4.0.0"
+        },
+        {
+            "name": "cordova-ios",
+            "version": ">=3.8.0"
+        }
+    ],
+    "author": "Freshdesk Inc",
+    "license": "SEE LICENSE IN LICENSE",
+    "bugs": {
+        "url": "https://github.com/techaffinity/freshchat-phonegap/issues"
+    },
+    "homepage": "https://www.freshworks.com/",
+    "main": "index.js"
+}

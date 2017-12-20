@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<plugin xmlns       =   "http://www.phonegap.com/ns/plugins/1.0"
+        id          =   "cordova-plugin-freshchat"
+        version     =   "1.0.0">
+
+    <!-- Meta -->
+    <name>Freshchat plugin for Phonegap</name>
+    <description>Plugin for integrating the Freshchat SDK into a Phonegap/Cordova project</description>
+    <keywords>freshdesk,hotline,freshchat</keywords>
+
+    <engines>
+        <engine name="cordova-android" version=">=4.0.0" />
+        <engine name="cordova-ios" version=">=3.8.0"/>
+    </engines>
+    
+    
+    <!-- Make the javascript wrapper inject at loadtime as <script> -->
+    <!-- The clobbers tag makes the module.exports of the js module available at window.<target-value> -->
+    <js-module src="www/freshchat_plugin.js" name="Freshchat">
+        <clobbers target="Freshchat" />
+    </js-module>
+        
+    <!-- Stuff to do only on android platforms -->
+    <platform name="android">
+        
+        <!-- Move the Java wrapper class to specified location(which corresponds with the Class's pakage name) -->
+        <source-file src="src/android/freshchatPlugin.java" target-dir="src/com/freshdesk/freshchat/android" />
+
+        <!-- Pushing <feature> tag into android platform's config.xml -->
+        <!-- This is needed for Cordova to recognize the plugin and for using the Java Class globally -->
+        <config-file target="res/xml/config.xml" parent="/*">
+            <feature name="freshchatPlugin" >
+                <param name="android-package" value="com.freshdesk.freshchat.android.freshchatPlugin"/>
+                <param name="onload" value="true" />
+            </feature>
+        </config-file>
+
+
+        <config-file target="res/values/strings.xml" parent="/*">
+            <string name="freshchat_file_provider_authority">$PACKAGE_NAME.provider</string>
+        </config-file>
+        
+        <config-file target="AndroidManifest.xml" parent="/manifest">
+            <uses-permission android:name="$PACKAGE_NAME.permission.C2D_MESSAGE" />
+            <permission android:name="$PACKAGE_NAME.permission.C2D_MESSAGE" android:protectionLevel="signature" />
+            <uses-permission android:name="android.permission.CAMERA" />
+            <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+            <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+
+        </config-file>
+            <config-file target="AndroidManifest.xml" parent="application">
+                <provider
+                android:name="android.support.v4.content.FileProvider" android:authorities="$PACKAGE_NAME.provider" android:exported="false"
+                android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/provider_paths" />
+            </provider>
+        </config-file>
+        
+        <!-- Including the HotlineSDK(which is included as such) as a framework -->
+        <!-- The custom parameter makes Cordova look for the gradle file in a relative location rather than the Android SDK -->
+        <framework src="src/android/Freshchat/build.gradle" custom="true" type="gradleReference" />
+        <source-file src="src/android/xml/provider_paths.xml" target-dir="res/xml" />
+        
+    </platform>
+
+    <platform name="ios">
+        <config-file target="config.xml" parent="/*">
+            <feature name="FreshchatPlugin">
+                <param name="ios-package" value="FreshchatPlugin" />
+                <param name="onload" value="true" />
+            </feature>
+        </config-file>
+        
+        
+        <!-- PLUGIN HEADER AND SOURCE FILES -->
+        <header-file src="src/ios/FreshchatPlugin.h" target-dir="FreshchatiOSPlugin"/>
+        <source-file src="src/ios/FreshchatPlugin.m" target-dir="FreshchatiOSPlugin"/>
+        
+        <!-- Freshchat SDK -->
+        
+        <!-- Headers -->
+        <!-- <header-file src="src/ios/FreshchatSDK/Freshchat.h" target-dir="FreshchatiOSPlugin"/> -->
+        
+        <!-- Resources -->
+        <!-- <resource-file src="src/ios/FreshchatSDK/FreshchatModels.bundle" target-dir="FreshchatiOSPlugin"/>
+        <resource-file src="src/ios/FreshchatSDK/FCResources.bundle" target-dir="FreshchatiOSPlugin"/>
+        <resource-file src="src/ios/FreshchatSDK/FCLocalization.bundle" target-dir="FreshchatiOSPlugin"/> -->
+
+
+
+
+        <framework src="Foundation.framework"/>
+        <framework src="AVFoundation.framework"/>
+        <framework src="AudioToolbox.framework"/>
+        <framework src="CoreMedia.framework"/>
+        <framework src="CoreData.framework"/>
+        <framework src="ImageIO.framework"/>
+        <framework src="SystemConfiguration.framework"/>
+        <framework src="AdSupport.framework"/>
+        <framework src="Photos.framework"/>
+
+
+         <framework src="FreshchatSDK" type="podspec" spec="~> 1.2.2"/>
+        <!-- <source-file src="src/ios/FreshchatSDK/libFDFreshchatSDK.a" target-dir="FreshchatiOSPlugin" framework="true"/> -->
+    </platform>
+</plugin>
+    

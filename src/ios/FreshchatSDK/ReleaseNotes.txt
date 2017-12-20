@@ -1,0 +1,32 @@
+Freshchat iOS SDK - Powered by Freshdesk
+
+Documentation   : https://support.freshchat.com
+Support Email   : support@freshchat.com
+Version         : 1.1.1
+
+Ver 1.1.1 
+__________________________
+Minor UI fixes
+
+Ver 1.1.0 
+__________________________
+- Changes for SDK Theming.
+- Added Send message api.
+- Minor bug fixes
+
+Ver 1.0.2
+__________________________
+Fix for potential issues when migrating from Hotline.
+
+Ver 1.0.1 
+__________________________
+Minor bug fixes
+
+Ver 1.0.0 
+__________________________
+"Modern messaging software that your sales and customer engagement teams will love"
+Features :
+- Offline FAQs.
+- Message Channels.
+- Campaign Messages.
+- Customer Satisfaction Survey for Channels.

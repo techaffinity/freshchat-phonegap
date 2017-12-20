@@ -1,0 +1,10 @@
+repositories{    
+  jcenter()
+  maven { url "https://jitpack.io" }
+}
+
+dependencies {
+    compile 'com.github.freshdesk:freshchat-android:1.2.1'
+	  compile 'com.google.android.gms:play-services-gcm:11.+'
+	
+}
