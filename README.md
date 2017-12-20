@@ -11,7 +11,7 @@ If you do not have an account, you can get started for free at [Freshchat.io](ht
 
 <!-- [Where to find AppId and AppKey](https://Freshchat.freshdesk.com/solution/articles/9000041894-where-to-find-app-id-and-app-key-) -->
 
-For platform specific details please refer to the [Documentation](http://support.Freshchat.io/support/solutions/160796)
+For platform specific details please refer to the [Documentation](https://support.freshchat.com/support/solutions)
 
 Supported platforms :
 * Android
@@ -31,7 +31,7 @@ cordova platform add ios
 
 You can add the plugin from command line like:
 ```shell
-cordova plugin add Freshchat
+cordova plugin add https://github.com/techaffinity/freshchat-phonegap.git
 ```
 You can also add it to your config.xml like 
 ```javascript
@@ -52,9 +52,26 @@ document.addEventListener("deviceready", function(){
 });
 ```
 
+
+For Ionic 2 & 3 :
+
+Access Freshchat variable in the development as below 
+
+((window as any).Freshchat) likewise 
+
+  // Initialize Freshchat with your AppId & AppKey from your portal https://web.Freshchat.com/settings/apisdk 
+  (window as any).Freshchat.init({
+    appId       : "<Your App Id>",
+    appKey      : "<Your App Key>"
+  });
+});
+
+
+
+
  The following optional boolean parameters can be passed to the init Object
  -  cameraCaptureEnabled
- -  gallerySelectionEnabled _(android only)_
+ -  gallerySelectionEnabled 
  -  voiceMessagingEnabled _(ios only)_
  -  pictureMessagingEnabled _(ios only)_
  -  teamMemberInfoVisible _(ios only)_
@@ -90,7 +107,7 @@ document.addEventListener("deviceready", function(){
  ```
 
  Once initialized you can call Freshchat APIs using the window.Freshchat object.
- In ionic (window as any).Freshchat Object.
+ In ionic (window as any).Freshchat
 
 ```javascript
 //After initializing Freshchat
@@ -207,15 +224,15 @@ window.Freshchat.unreadCount(function(success,val) {
 
 #### Push Notifications
 ##### 1. Recommended Option
-To setup push notifications we recommend using our forked version of the phonegap-plugin-push available [here] (https://github.com/freshdesk/phonegap-plugin-push) .
+To setup push notifications we recommend using our forked version of the phonegap-plugin-push available [here] (https://github.com/techaffinity/phonegap-plugin-push) .
 
 It can be installed by the following command : 
 ```shell
-cordova plugin add https://github.com/freshdesk/phonegap-plugin-push.git
+cordova plugin add https://github.com/techaffinity/phonegap-plugin-push.git
 ```
 Or you can add it to your config.xml like:
 ```javascript
-<plugin name="phonegap-plugin-push" spec="https://github.com/freshdesk/phonegap-plugin-push.git">
+<plugin name="phonegap-plugin-push" spec="https://github.com/techaffinity/phonegap-plugin-push.git">
     <param name="SENDER_ID" value="XXXXXXXXXX" />
 </plugin>
 ```
