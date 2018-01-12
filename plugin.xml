@@ -43,25 +43,24 @@
         <config-file target="AndroidManifest.xml" parent="/manifest">
             <uses-permission android:name="$PACKAGE_NAME.permission.C2D_MESSAGE" />
             <permission android:name="$PACKAGE_NAME.permission.C2D_MESSAGE" android:protectionLevel="signature" />
-            <uses-permission android:name="android.permission.CAMERA" />
-            <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-            <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
-
+            <uses-permission android:name="android.permission.CAMERA" android:required="false"/>
         </config-file>
-            <config-file target="AndroidManifest.xml" parent="application">
+
+            <config-file target="AndroidManifest.xml" parent="application" mode="merge">
                 <provider
-                android:name="android.support.v4.content.FileProvider" android:authorities="$PACKAGE_NAME.provider" android:exported="false"
+                android:name="com.techaffinity.phonegap.plugins.FileProvider" android:authorities="${applicationId}.provider" android:exported="false"
                 android:grantUriPermissions="true">
             <meta-data
                 android:name="android.support.FILE_PROVIDER_PATHS"
-                android:resource="@xml/provider_paths" />
+                android:resource="@xml/freshchat_phonegap_provider_paths" />
             </provider>
         </config-file>
         
         <!-- Including the HotlineSDK(which is included as such) as a framework -->
         <!-- The custom parameter makes Cordova look for the gradle file in a relative location rather than the Android SDK -->
         <framework src="src/android/Freshchat/build.gradle" custom="true" type="gradleReference" />
-        <source-file src="src/android/xml/provider_paths.xml" target-dir="res/xml" />
+        <source-file src="src/android/xml/freshchat_phonegap_provider_paths.xml" target-dir="res/xml" />
+        <source-file src="src/android/FileProvider.java" target-dir="src/com/techaffinity/phonegap/plugins" />
         
     </platform>
 
