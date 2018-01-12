@@ -3,11 +3,11 @@
 
 This plugin integrates Freshchat's SDK into a Phonegap/Cordova project.
 
-You can reach us anytime at contactus@Freshchat.io if you run into trouble.
+You can reach us anytime at support@freshchat.com if you run into trouble.
 
 AppId and AppKey
 You'll need these keys while integrating Freshchat SDK with your app. you can get the same from the [Settings -> API&SDK](https://web.Freshchat.com/settings/apisdk) page. Do not share them with anyone.
-If you do not have an account, you can get started for free at [Freshchat.io](https://www.freshworks.com/) 
+If you do not have an account, you can get started for free at [Freshchat.com](https://www.freshworks.com/live-chat-software/) 
 
 <!-- [Where to find AppId and AppKey](https://Freshchat.freshdesk.com/solution/articles/9000041894-where-to-find-app-id-and-app-key-) -->
 
