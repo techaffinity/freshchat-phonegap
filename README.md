@@ -186,7 +186,8 @@ view filtered by the tag "test".
     - Update user info. Accepts a JSON with the following format  
 ```javascript
 {
-   "name" : "John Doe",
+   "firstName" : "John",
+   "lastName" : "Doe"
    "email" : "johndoe@dead.man",
    "countryCode" : "+91",
    "phoneNumber" : "1234234123"
