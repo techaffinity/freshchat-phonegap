@@ -6,7 +6,7 @@
 //
 
 #import <Cordova/CDV.h>
-#import "Freshchat.h"
+#import "FreshchatSDK/FreshchatSDK.h"
 
 @interface FreshchatPlugin:CDVPlugin
     
