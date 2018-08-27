@@ -20,7 +20,7 @@
 -(void)showConversations:(CDVInvokedUrlCommand*)command;
 -(void)showFAQs:(CDVInvokedUrlCommand*)command;
 -(void)sendMessage:(CDVInvokedUrlCommand*)command;
--(void)setExternalID:(CDVInvokedUrlCommand*)command;
+-(void)identifyUser:(CDVInvokedUrlCommand*)command;
 -(void)getRestoreID:(CDVInvokedUrlCommand*)command;
 
 @end

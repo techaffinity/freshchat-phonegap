@@ -304,6 +304,15 @@ Options for *notificationPriority* are as below:
 
 This follow the same priority order as Android's NotificaitonCompat class.
 
+#### Restore User
+```javascript
+    window.Freshchat.identifyUser( {
+        externalId: "USER_EXTERNAL_ID",
+        restoreId: "USER_RESTORE_ID"
+    });
+```
+Note: If user does not have restoreId, call identifyUser() with just externalId.
+
 #### Caveats
 
 ##### Android :

@@ -82,7 +82,7 @@ var functionList = [
     "updatePushNotificationToken",
     "updateAndroidNotificationProperties",
     "sendMessage",
-    "setExternalID",
+    "identifyUser",
     "getRestoreID"
 ];
 
