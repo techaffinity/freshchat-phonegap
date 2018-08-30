@@ -30,13 +30,15 @@
 		<key>TeamMemberMessageTextStyle</key>
 		<dict>
 			<key>textColorLink</key>
-			<string>#2701A0</string>
+			<string>#2283F6</string>
 			<key>fontName</key>
-			<string>SYS_DEFAULT_FONT_NAME</string>
+			<string>Arial</string>
 			<key>textSize</key>
 			<string>15.0f</string>
 			<key>textColor</key>
 			<string>#000000</string>
+			<key>textAlignment</key>
+			<string></string>
 		</dict>
 		<key>TeamMemberMessageTimeTextStyle</key>
 		<dict>
@@ -50,13 +52,15 @@
 		<key>UserMessageTextStyle</key>
 		<dict>
 			<key>textColorLink</key>
-			<string>#2701A0</string>
+			<string>#2283F6</string>
 			<key>fontName</key>
-			<string>SYS_DEFAULT_FONT_NAME</string>
+			<string>Arial</string>
 			<key>textSize</key>
 			<string>15.0f</string>
 			<key>textColor</key>
 			<string>#000000</string>
+			<key>textAlignment</key>
+			<string></string>
 		</dict>
 		<key>UserMessageTimeTextStyle</key>
 		<dict>
@@ -95,7 +99,7 @@
 			<key>textCursorColor</key>
 			<string>#808285</string>
 			<key>borderColor</key>
-			<string>#D7D7D7</string>
+			<string>#FFFFFF</string>
 			<key>background</key>
 			<string>#FFFFFF</string>
 			<key>buttonColor</key>
@@ -104,7 +108,9 @@
 		<key>MessageReplyViewStyle</key>
 		<dict>
 			<key>background</key>
-			<string>#E8E8E8</string>
+			<string>#FFFFFF</string>
+			<key>dividerColor</key>
+			<string>#B3B3B3</string>
 		</dict>
 		<key>CustomerSurveyDialogStyle</key>
 		<dict>
@@ -212,7 +218,7 @@
 		<key>MessagePadding</key>
 		<dict>
 			<key>UserMessageLeft</key>
-			<string>8</string>
+			<string>10</string>
 			<key>UserMessageRight</key>
 			<string>8</string>
 			<key>UserMessageTop</key>
@@ -272,6 +278,8 @@
 			<string>14.0f</string>
 			<key>textColor</key>
 			<string>#ABABAB</string>
+			<key>maxLines</key>
+			<string>1</string>
 		</dict>
 		<key>ChannelLastUpdatedAtTextStyle</key>
 		<dict>
@@ -436,6 +444,8 @@
 		</dict>
 		<key>NotificationCancel</key>
 		<string>FCResources.bundle/Images/freshchat_notification_cancel_icon</string>
+		<key>ShowPushPrompt</key>
+		<true/>
 	</dict>
 	<key>Miscellaneous</key>
 	<dict>
@@ -487,6 +497,8 @@
 			<string>13.0f</string>
 			<key>textColor</key>
 			<string>#000000</string>
+			<key>textColorHint</key>
+			<string>#808285</string>
 			<key>borderColor</key>
 			<string>#FFFFFF</string>
 			<key>textCursorColor</key>
@@ -558,6 +570,8 @@
 			<string>14.0f</string>
 			<key>textColor</key>
 			<string>#808285</string>
+			<key>maxLines</key>
+			<string>1</string>
 		</dict>
 		<key>FAQCategoryListStyle</key>
 		<dict>
