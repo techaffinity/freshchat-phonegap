@@ -197,9 +197,6 @@
     if([args objectForKey:@"phoneNumber"] != nil) {
         user.phoneNumber = [args objectForKey:@"phoneNumber"];
     }
-    if([args objectForKey:@"externalId"] != nil) {
-       // user.externalID = [args objectForKey:@"externalId"];
-    }
     [self.commandDelegate runInBackground:^{
         [[Freshchat sharedInstance] setUser:user];
         [self callbackToJavascriptWithoutResultForCommand:command];
@@ -307,26 +304,6 @@
  
 }
 
-- (void) setExternalID : (CDVInvokedUrlCommand*)command {
-    NSLog(@"set ExternalID called");
-
-    NSArray* arguments = [command arguments];
-    NSString* externalId;
-     if(arguments != nil && arguments.count > 0) {
-        externalId = [arguments firstObject];
-    } else {
-        NSLog(@"Please provide tag and message field in object to send message");
-        [self callbackToJavascriptWithoutResultForCommand:command];
-    }
-        
-    [self.commandDelegate runInBackground:^{
-            [[Freshchat sharedInstance] identifyUserWithExternalID:externalId restoreID:nil];
-            [self callbackToJavascriptWithoutResultForCommand:command];
-    }];
-
-       [self callbackToJavascriptWithoutResultForCommand:command];
-
-}
 - (void) getRestoreID : (CDVInvokedUrlCommand*)command {
     NSLog(@"getRestoreID called");
     NSString* restoreID = [FreshchatUser sharedInstance].restoreID;
@@ -335,6 +312,33 @@
     [self callbackToJavascriptWithResult:result ForCommand:command];
      [self callbackToJavascriptWithoutResultForCommand:command];
 
+}
+
+- (void) identifyUser : (CDVInvokedUrlCommand*)command {
+    NSLog(@"identifyUser called");
+    
+    NSArray* arguments = [command arguments];
+    NSDictionary* args;
+    if(arguments != nil && arguments.count > 0) {
+        args = [arguments firstObject];
+    } else {
+        NSLog(@"Please provide externalId and restoreId in object to identifyUser");
+        [self callbackToJavascriptWithoutResultForCommand:command];
+    }
+    
+    NSString* externalId = [args objectForKey:@"externalId"];
+    NSString* restoreId = [args objectForKey:@"restoreId"];
+    
+    if([restoreId isEqual:[NSNull null]]) {
+        restoreId = nil;
+    }
+
+    [self.commandDelegate runInBackground:^{
+        [[Freshchat sharedInstance] identifyUserWithExternalID:externalId restoreID:restoreId];
+        [self callbackToJavascriptWithoutResultForCommand:command];
+    }];
+
+    [self callbackToJavascriptWithoutResultForCommand:command];
 }
 
 @end

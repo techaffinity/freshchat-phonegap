@@ -2,7 +2,85 @@ Freshchat iOS SDK - Powered by Freshdesk
 
 Documentation   : https://support.freshchat.com
 Support Email   : support@freshchat.com
-Version         : 1.1.1
+Version         : 1.4.6
+
+Ver 1.4.6 
+__________________________
+Fix theme color for message text
+Make push prompt configurable
+
+Ver 1.4.5 
+__________________________
+Fix marketing campaign notifications not showing when app is open
+
+Ver 1.4.4 
+__________________________
+Display files sent by user from other platforms
+
+Ver 1.4.3 
+__________________________
+Fix rare issue with first user message displaying twice over
+
+Ver 1.4.2 
+__________________________
+Support for locale changes at runtime
+Fix channel icon in in-app notification
+Fix theme issue with back button when closing gallery
+
+Ver 1.4.1 
+__________________________
+Fix regression with user updates
+
+Ver 1.4.0 
+__________________________
+Graceful handling of deleted users and accounts
+
+Ver 1.3.3 
+__________________________
+Bug Fixes
+
+Ver 1.3.2 
+__________________________
+Support for historical response time if current response time is not available
+Enhancements and bug fixes
+
+Ver 1.3.1 
+__________________________
+-Team Member info now controlled by a unified flag (teamMemberInfoVisible)
+-Message cell rendering fixes for orientation changes
+-Miscellaneous fixes
+
+Ver 1.3.0 
+__________________________
+SDK header file name updated to FreshchatSDK.h for naming consistency.
+Better rendering support for RTL content.
+
+Ver 1.2.5 
+__________________________
+Fixes for Swift project crashes and misc fixes.
+
+Ver 1.2.4 
+__________________________
+Remove unused microphone permission
+
+Ver 1.2.3 
+__________________________
+UI improvements for iPhoneX devices.
+Minor bugs fixes.
+
+Ver 1.2.2
+__________________________
+Fixes for on-demand init when showing conversations with tags.
+Fixes for text alignment in message bubble.
+
+Ver 1.2.1 
+__________________________
+Update refresh intervals
+
+Ver 1.2.0 
+__________________________
+User restore functionality
+Minor bug fixes and improvements
 
 Ver 1.1.1 
 __________________________

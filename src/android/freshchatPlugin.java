@@ -99,7 +99,7 @@ public class freshchatPlugin extends CordovaPlugin {
                     }
                      if(initArgs.has("teamMemberInfoVisible")){
 
-                        freshchatConfig.setTeamMemberInfoVisible(initArgs.getBoolean("gallerySelectionEnabled"));
+                        freshchatConfig.setTeamMemberInfoVisible(initArgs.getBoolean("teamMemberInfoVisible"));
                     }
                     Freshchat.getInstance(cordovaContext).init(freshchatConfig);
                     callbackContext.success();
@@ -204,9 +204,6 @@ public class freshchatPlugin extends CordovaPlugin {
                     if(jsonArgs.has("email")) {
                         freshchatUser.setEmail(jsonArgs.getString("email"));
                     }
-                    // if(jsonArgs.has("externalId")) {
-                    //     freshchatUser.setExternalId(jsonArgs.getString("externalId"));
-                    // }
                     if(jsonArgs.has("countryCode") && jsonArgs.has("phoneNumber")) {
                         freshchatUser.setPhone(jsonArgs.getString("countryCode"),jsonArgs.getString("phoneNumber"));
                     }
@@ -318,22 +315,41 @@ public class freshchatPlugin extends CordovaPlugin {
 
                     return true;
                 }
-                if(action.equals("setExternalID")) {
-                    if(args.length() == 0) {
-                        Log.e(LOG_TAG,"Please provide parameters to set External ID");
-                        return false;
-                    }
-                    String externalId = args.getString(0);
-                    Freshchat.getInstance(cordovaContext).identifyUser(externalId, null);
-                    callbackContext.success("External ID set successfully");
-                    return true;
-                }
                 if(action.equals("getRestoreID")) {
                     Log.d(LOG_TAG,"getRestoreID called");
                     freshchatUser=Freshchat.getInstance(cordovaContext).getUser();
                     String restoreID = freshchatUser.getRestoreId();
                     callbackContext.success(restoreID);
                     return true;
+                }
+                if (action.equals("identifyUser")) {
+                    if (args.length() == 0) {
+                        String errorMsg = "Please provide parameters to identifyUser";
+                        Log.e(LOG_TAG, errorMsg);
+                        callbackContext.error("identifyUser failed - " + errorMsg);
+                        return false;
+                    }
+
+                    try {
+                        JSONObject jsonArgs = new JSONObject(args.getString(0));
+                        String externalId = null;
+                        String restoreId = null;
+
+                        if (jsonArgs.has("externalId")) {
+                            externalId = jsonArgs.getString("externalId");
+                        }
+
+                        if (jsonArgs.has("restoreId")) {
+                            restoreId = jsonArgs.getString("restoreId");
+                        }
+
+                        Freshchat.getInstance(cordovaContext).identifyUser(externalId, restoreId);
+                        callbackContext.success("identifyUser successfully");
+                        return true;
+                    } catch (Exception e) {
+                        callbackContext.error("identifyUser failed - " + e.toString());
+                        return false;
+                    }
                 }
 
                 if(action.equals("sendMessage")) {
