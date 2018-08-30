@@ -99,7 +99,7 @@ public class freshchatPlugin extends CordovaPlugin {
                     }
                      if(initArgs.has("teamMemberInfoVisible")){
 
-                        freshchatConfig.setTeamMemberInfoVisible(initArgs.getBoolean("gallerySelectionEnabled"));
+                        freshchatConfig.setTeamMemberInfoVisible(initArgs.getBoolean("teamMemberInfoVisible"));
                     }
                     Freshchat.getInstance(cordovaContext).init(freshchatConfig);
                     callbackContext.success();
