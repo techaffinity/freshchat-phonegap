@@ -101,7 +101,7 @@
         <framework src="Photos.framework"/>
 
 
-         <framework src="FreshchatSDK" type="podspec" spec="1.4.6"/>
+         <framework src="FreshchatSDK" type="podspec" spec="1.5.5"/>
         <!-- <source-file src="src/ios/FreshchatSDK/libFDFreshchatSDK.a" target-dir="FreshchatiOSPlugin" framework="true"/> -->
     </platform>
 </plugin>

@@ -6,7 +6,7 @@ allprojects {
 }
 
 dependencies {
-    compile 'com.github.freshdesk:freshchat-android:1.5.1'
+    compile 'com.github.freshdesk:freshchat-android:1.5.3'
 	  compile 'com.google.android.gms:play-services-gcm:11.+'
 	
 }
