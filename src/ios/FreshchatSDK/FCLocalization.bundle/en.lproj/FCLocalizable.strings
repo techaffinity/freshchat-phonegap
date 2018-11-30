@@ -107,10 +107,18 @@
 "chat_resolution_prompt_yes_button_text"="Yes!";
 "chat_resolution_prompt_no_button_text"="No";
 
+"chat_resolution_survey_question_text"="";
+
 /* Survey prompt */
 "cust_sat_not_resolved_prompt"="How could we have helped you better?";
 "cust_sat_user_comments_placeholder"="Additional feedback";
 "cust_sat_submit_button_text"="Send";
+
+/* Message time format */
+"chat_message_time_today"="hh:mm a";
+"chat_message_time_this_year_short"="MMM dd";
+"chat_message_time_this_year_long"="MMM dd',' hh:mm a";
+"chat_message_time_other_year"="MMM YYYY";
 
 /* Typically replies */
 "typically_replies_within_a_minute"="Typically replies within a minute";

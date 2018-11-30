@@ -2,7 +2,35 @@ Freshchat iOS SDK - Powered by Freshdesk
 
 Documentation   : https://support.freshchat.com
 Support Email   : support@freshchat.com
-Version         : 1.4.6
+Version         : 1.5.5
+
+Ver 1.5.5 
+__________________________
+Fixes build issue with Xcode 10.
+
+Ver 1.5.4 
+__________________________
+Theme fixes and UI enhancements for chat resolution prompt
+
+Ver 1.5.3 
+__________________________
+Fix: Fallback to default theme if custom theme is missing
+UI optimisation for newer devices
+
+Ver 1.5.2 
+__________________________
+Display brand's name or default text (Support) as name when TeamMemberInfoVisible is false
+
+Ver 1.5.1 
+__________________________
+Agent avatar behaviour change - specific order of fallback (agent avatar, then custom static icon, then app icon)
+iPhoneX image preview changes
+
+Ver 1.5.0 
+__________________________
+Support for auto expiring Customer Satisfaction Surveys
+Add support for overriding CSAT survey's question
+Action name for unread count API  changed to FRESHCHAT_UNREAD_MESSAGE_COUNT_CHANGED
 
 Ver 1.4.6 
 __________________________

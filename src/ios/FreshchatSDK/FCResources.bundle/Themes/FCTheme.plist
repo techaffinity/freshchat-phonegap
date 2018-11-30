@@ -13,11 +13,16 @@
 		<key>CancelIcon</key>
 		<string>FCResources.bundle/Images/freshchat_cancel_icon</string>
 		<key>TeamMemberAvatarIcon</key>
-		<string>FCResources.bundle/Images/freshchat_agent_avatar_icon</string>
+		<string></string>
 		<key>SendIcon</key>
 		<string>FCResources.bundle/Images/freshchat_send_icon</string>
 		<key>RecordIcon</key>
 		<string>FCResources.bundle/Images/freshchat_mic_icon</string>
+		<key>TeamMemberAvatarStyle</key>
+		<dict>
+			<key>visible</key>
+			<true/>
+		</dict>
 		<key>TeamMemberNameTextStyle</key>
 		<dict>
 			<key>fontName</key>
@@ -115,9 +120,9 @@
 		<key>CustomerSurveyDialogStyle</key>
 		<dict>
 			<key>background</key>
-			<string>#DCDCDC</string>
+			<string>#F7F7F7</string>
 			<key>dividerColor</key>
-			<string>#E6E6E6</string>
+			<string>#B3B3B3</string>
 		</dict>
 		<key>CustomerSurveyRatingBarStyle</key>
 		<dict>
@@ -142,7 +147,7 @@
 			<key>textColor</key>
 			<string>#000000</string>
 			<key>borderColor</key>
-			<string>#B3B3B3</string>
+			<string>#808285</string>
 		</dict>
 		<key>CustomerSurveySubmitButtonTextStyle</key>
 		<dict>
@@ -151,9 +156,9 @@
 			<key>textSize</key>
 			<string>15.0f</string>
 			<key>textColor</key>
-			<string>#007AFF</string>
+			<string>#378CF8</string>
 			<key>background</key>
-			<string>#FFFFFF</string>
+			<string>#F7F7F7</string>
 		</dict>
 		<key>ChatResolutionPromptTextStyle</key>
 		<dict>
