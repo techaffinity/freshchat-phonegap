@@ -13,6 +13,7 @@ import org.apache.cordova.CallbackContext;
 import org.apache.cordova.CordovaInterface;
 import org.apache.cordova.CordovaWebView;
 
+import org.apache.cordova.PluginResult;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import org.json.JSONException;
@@ -21,8 +22,11 @@ import java.util.Iterator;
 import java.util.HashMap;
 import java.util.Map;
 
+import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
+import android.support.v4.content.LocalBroadcastManager;
 import android.util.Log;
 import android.os.Bundle;
 import android.widget.Toast;
@@ -51,11 +55,35 @@ public class freshchatPlugin extends CordovaPlugin {
     private Map<String, String> userMeta;
     private Bundle bundle;
 
+    private CallbackContext resCallbackContext;
     @Override
     public void initialize(CordovaInterface cordova, CordovaWebView webView) {
         super.initialize(cordova, webView);
         cordovaContext = cordova.getActivity().getApplicationContext();
     }
+
+    BroadcastReceiver broadcastReceiver = new BroadcastReceiver() {
+        @Override
+            public void onReceive(Context context, Intent intent) {
+            PluginResult result;
+            String restoreId = Freshchat.getInstance(cordovaContext).getUser().getRestoreId();
+            String externalId = Freshchat.getInstance(cordovaContext).getUser().getExternalId();
+            try{
+                JSONObject parameter = new JSONObject();
+                parameter.put("restoreId", restoreId);
+                parameter.put("externalId", externalId);
+                result = new PluginResult(PluginResult.Status.OK,parameter);
+                result.setKeepCallback(false);
+                if (resCallbackContext != null) {
+                    resCallbackContext.sendPluginResult(result);
+                    resCallbackContext = null;
+                }
+            }catch(Exception e){
+                Log.e(LOG_TAG, e.toString());
+            }
+
+        }
+    };
 
     public Bundle jsonToBundle(JSONObject jsonObject) throws JSONException {
         Bundle bundle = new Bundle();
@@ -70,7 +98,7 @@ public class freshchatPlugin extends CordovaPlugin {
         }
         return bundle;
      }
-
+    
     @Override
     public boolean execute(String action, JSONArray args,final CallbackContext callbackContext) throws JSONException {
 
@@ -317,9 +345,27 @@ public class freshchatPlugin extends CordovaPlugin {
                 }
                 if(action.equals("getRestoreID")) {
                     Log.d(LOG_TAG,"getRestoreID called");
-                    freshchatUser=Freshchat.getInstance(cordovaContext).getUser();
+                    freshchatUser= Freshchat.getInstance(cordovaContext).getUser();
                     String restoreID = freshchatUser.getRestoreId();
+                    Log.d(LOG_TAG,restoreID);
                     callbackContext.success(restoreID);
+                    return true;
+                }
+                if(action.equals("registerRestoreIdNotification")){
+                     Log.d(LOG_TAG,"listenRestoreId called");
+                    IntentFilter intentFilter = new IntentFilter(Freshchat.FRESHCHAT_USER_RESTORE_ID_GENERATED);
+                    LocalBroadcastManager.getInstance(cordovaContext).registerReceiver(broadcastReceiver, intentFilter);
+                    PluginResult result = new PluginResult(PluginResult.Status.NO_RESULT);
+                    result.setKeepCallback(true);
+                    resCallbackContext = callbackContext;
+                    callbackContext.sendPluginResult(result);
+                    return true;
+                }
+                if(action.equals("unregisterRestoreIdNotification")){
+                    if(resCallbackContext != null){
+                        LocalBroadcastManager.getInstance(cordovaContext).unregisterReceiver(broadcastReceiver);
+                    }
+                    
                     return true;
                 }
                 if (action.equals("identifyUser")) {
@@ -329,7 +375,6 @@ public class freshchatPlugin extends CordovaPlugin {
                         callbackContext.error("identifyUser failed - " + errorMsg);
                         return false;
                     }
-
                     try {
                         JSONObject jsonArgs = new JSONObject(args.getString(0));
                         String externalId = null;

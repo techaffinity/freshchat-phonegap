@@ -83,7 +83,9 @@ var functionList = [
     "updateAndroidNotificationProperties",
     "sendMessage",
     "identifyUser",
-    "getRestoreID"
+    "getRestoreID",
+    "registerRestoreIdNotification",
+    "unregisterRestoreIdNotification"
 ];
 
 functionList.forEach(function(funcName) {

@@ -14,6 +14,7 @@
 
 @implementation FreshchatPlugin:CDVPlugin
 
+
 -(void) callbackToJavascriptWithResult:(CDVPluginResult*)result ForCommand:(CDVInvokedUrlCommand*)command {
     [self.commandDelegate sendPluginResult:result callbackId:command.callbackId];
 }
@@ -310,8 +311,6 @@
     NSLog(@"Freshchat restoreID: %@", restoreID);
     CDVPluginResult *result = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsString:restoreID];
     [self callbackToJavascriptWithResult:result ForCommand:command];
-     [self callbackToJavascriptWithoutResultForCommand:command];
-
 }
 
 - (void) identifyUser : (CDVInvokedUrlCommand*)command {
@@ -337,8 +336,30 @@
         [[Freshchat sharedInstance] identifyUserWithExternalID:externalId restoreID:restoreId];
         [self callbackToJavascriptWithoutResultForCommand:command];
     }];
-
-    [self callbackToJavascriptWithoutResultForCommand:command];
 }
+
+-(void) registerRestoreIdNotification:(CDVInvokedUrlCommand*)command {
+   [[NSNotificationCenter defaultCenter] addObserverForName:FRESHCHAT_USER_RESTORE_ID_GENERATED object:nil queue:nil usingBlock:^(NSNotification *note) {
+      [self didReceiveNotification:note :command];
+    }];
+}
+-(void) unregisterRestoreIdNotification:(CDVInvokedUrlCommand*)command{
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:FRESHCHAT_USER_RESTORE_ID_GENERATED object:nil];
+    CDVPluginResult *result = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsString:@"sucessFully Unsubscrbed"];
+    [self callbackToJavascriptWithResult:result ForCommand:command];
+}
+
+- (void) didReceiveNotification :(NSNotification*)notification :(CDVInvokedUrlCommand*)command {
+    NSString* restoreID = [FreshchatUser sharedInstance].restoreID;
+    NSString* externalID = [FreshchatUser sharedInstance].externalID;
+    NSLog(@"Freshchat restoreID: %@", restoreID);
+    NSMutableDictionary* param =[[NSMutableDictionary alloc]init];
+    [param setValue:restoreID forKey:@"restoreId"];
+    [param setValue:externalID forKey:@"externalId"];
+    CDVPluginResult *result = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsDictionary:param];
+    [self callbackToJavascriptWithResult:result ForCommand:command];
+}
+
+
 
 @end

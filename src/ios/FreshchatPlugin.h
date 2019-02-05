@@ -9,7 +9,8 @@
 #import "FreshchatSDK/FreshchatSDK.h"
 
 @interface FreshchatPlugin:CDVPlugin
-    
+
+
 -(void)init:(CDVInvokedUrlCommand*)command;
 -(void)clearUserData:(CDVInvokedUrlCommand*)command;
 -(void)unreadCount:(CDVInvokedUrlCommand*)command;
@@ -22,5 +23,7 @@
 -(void)sendMessage:(CDVInvokedUrlCommand*)command;
 -(void)identifyUser:(CDVInvokedUrlCommand*)command;
 -(void)getRestoreID:(CDVInvokedUrlCommand*)command;
+-(void)registerRestoreIdNotification:(CDVInvokedUrlCommand*)command;
+-(void)unregisterRestoreIdNotification:(CDVInvokedUrlCommand*)command;
 
 @end
