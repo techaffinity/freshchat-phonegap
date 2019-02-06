@@ -56,6 +56,7 @@ public class freshchatPlugin extends CordovaPlugin {
     private Bundle bundle;
 
     private CallbackContext resCallbackContext;
+    private CallbackContext unreadResCallbackContext;
     @Override
     public void initialize(CordovaInterface cordova, CordovaWebView webView) {
         super.initialize(cordova, webView);
@@ -84,6 +85,22 @@ public class freshchatPlugin extends CordovaPlugin {
 
         }
     };
+    BroadcastReceiver unreadCountChangeReceiver = new BroadcastReceiver() {
+    @Override
+    public void onReceive(Context context, Intent intent) {
+        Freshchat.getInstance(cordovaContext).getUnreadCountAsync(new UnreadCountCallback() {
+            @Override
+            public void onResult(FreshchatCallbackStatus freshchatCallbackStatus, int unreadCount) {
+                PluginResult result = new PluginResult(PluginResult.Status.OK,Integer.toString(unreadCount));
+                result.setKeepCallback(false);
+                if (unreadResCallbackContext != null) {
+                    unreadResCallbackContext.sendPluginResult(result);
+                    unreadResCallbackContext = null;
+                }
+            }
+        });
+    }
+};
 
     public Bundle jsonToBundle(JSONObject jsonObject) throws JSONException {
         Bundle bundle = new Bundle();
@@ -275,7 +292,7 @@ public class freshchatPlugin extends CordovaPlugin {
                                 callbackContext.error(freshchatCallbackStatus.toString());
                             }
                                 
-                            }
+                        }
                     });
                     return true;
                     }
@@ -300,6 +317,23 @@ public class freshchatPlugin extends CordovaPlugin {
                     }
                     return true;
                   
+                }
+                if(action.equals("unreadCountlistenerRegister")){
+                    IntentFilter intentFilter = new IntentFilter(Freshchat.FRESHCHAT_UNREAD_MESSAGE_COUNT_CHANGED);
+                    LocalBroadcastManager.getInstance(cordovaContext).registerReceiver(unreadCountChangeReceiver, intentFilter);
+                    PluginResult result = new PluginResult(PluginResult.Status.NO_RESULT);
+                    result.setKeepCallback(true);
+                    unreadResCallbackContext = callbackContext;
+                    callbackContext.sendPluginResult(result);
+                    return true;
+                }
+                 if(action.equals("unreadCountlistenerUnregister")){
+                    if(unreadResCallbackContext != null){
+                        LocalBroadcastManager.getInstance(cordovaContext).unregisterReceiver(unreadCountChangeReceiver);
+                        callbackContext.success("success");
+                    }
+                    
+                    return true;
                 }
 
                 if(action.equals("getVersionName")) {

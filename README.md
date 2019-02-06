@@ -222,6 +222,37 @@ Eg.
 	});
 
 ```
+
+#### UnRead Count  
+
+If you would like to obtain the number of unread messages for the user at app launch or any other specific event, 
+use this function.
+Eg.
+```javascript
+window.Freshchat.unreadCount(function(success,val) {
+    //success indicates whether the API call was successful
+    //val contains the no of unread messages
+});
+```
+The plugin can also choose to listen to changes to unread count when the app is open. The way to listen to the broadcast is described below.
+To register : 
+Eg.
+```javascript
+window.Freshchat.unreadCountlistenerRegister(function(success,val) {
+    //success indicates whether the API call was successful
+    //val contains the no of unread messages
+});
+```
+To unregister : 
+Eg.
+```javascript
+window.Freshchat.unreadCountlistenerUnregister(function(success,val) {
+    //success indicates whether the API call was successful
+    //val contains the no of unread messages
+});
+```
+
+
 #### Restore user 
 
 * Restore user and chat messages across device/platforms/sessions

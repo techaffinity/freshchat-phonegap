@@ -337,7 +337,6 @@
         [self callbackToJavascriptWithoutResultForCommand:command];
     }];
 }
-
 -(void) registerRestoreIdNotification:(CDVInvokedUrlCommand*)command {
    [[NSNotificationCenter defaultCenter] addObserverForName:FRESHCHAT_USER_RESTORE_ID_GENERATED object:nil queue:nil usingBlock:^(NSNotification *note) {
       [self didReceiveNotification:note :command];
@@ -345,7 +344,22 @@
 }
 -(void) unregisterRestoreIdNotification:(CDVInvokedUrlCommand*)command{
     [[NSNotificationCenter defaultCenter] removeObserver:self name:FRESHCHAT_USER_RESTORE_ID_GENERATED object:nil];
-    CDVPluginResult *result = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsString:@"sucessFully Unsubscrbed"];
+    CDVPluginResult *result = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsString:@"sucessFully Unsubscrbed unread count listener "];
+    [self callbackToJavascriptWithResult:result ForCommand:command];
+}
+
+-(void) unreadCountlistenerRegister:(CDVInvokedUrlCommand*)command {
+    [[NSNotificationCenter defaultCenter]addObserverForName:FRESHCHAT_UNREAD_MESSAGE_COUNT_CHANGED object:nil queue:nil usingBlock:^(NSNotification *note) {
+       [[Freshchat sharedInstance]unreadCountWithCompletion:^(NSInteger count) {
+            NSLog(@"your unread count : %d", (int)count);
+             CDVPluginResult *result = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsInt:(int)count];
+            [self callbackToJavascriptWithResult:result ForCommand:command];
+       }]; 
+}];
+}
+-(void) unreadCountlistenerUnregister:(CDVInvokedUrlCommand*)command{
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:FRESHCHAT_UNREAD_MESSAGE_COUNT_CHANGED object:nil];
+    CDVPluginResult *result = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsString:@"sucessFully Unsubscrbed  unread count listener"];
     [self callbackToJavascriptWithResult:result ForCommand:command];
 }
 

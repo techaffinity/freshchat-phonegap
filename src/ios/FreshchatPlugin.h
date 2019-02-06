@@ -14,6 +14,8 @@
 -(void)init:(CDVInvokedUrlCommand*)command;
 -(void)clearUserData:(CDVInvokedUrlCommand*)command;
 -(void)unreadCount:(CDVInvokedUrlCommand*)command;
+-(void)unreadCountlistenerRegister:(CDVInvokedUrlCommand*)command;
+-(void)unreadCountlistenerUnregister:(CDVInvokedUrlCommand*)command;
 -(void)updatePushNotificationToken:(CDVInvokedUrlCommand*)command;
 -(void)updateUser:(CDVInvokedUrlCommand*)command;
 -(void)updateUserProperties:(CDVInvokedUrlCommand*)command;

@@ -72,6 +72,8 @@ Freshchat.clearUserData = function() {
 //Add Wrapper functions to Freshchat
 var functionList = [
     "unreadCount",
+    "unreadCountlistenerRegister",
+    "unreadCountlistenerUnregister",
     "updateUser",
     "updateUserProperties",
     "showConversations",
