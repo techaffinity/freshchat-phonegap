@@ -248,7 +248,7 @@ Eg.
 ```javascript
 window.Freshchat.unreadCountlistenerUnregister(function(success,val) {
     //success indicates whether the API call was successful
-    //val contains the no of unread messages
+    //val contains the message for the success.
 });
 ```
 
