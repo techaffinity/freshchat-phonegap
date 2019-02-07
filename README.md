@@ -34,6 +34,12 @@ You can add the plugin from command line like:
 cordova plugin add https://github.com/techaffinity/freshchat-phonegap.git
 ```
 
+To prevent build failures caused by including different versions of the support libraries in Android gradle. Add the below plugin
+
+https://github.com/dpa99c/cordova-android-support-gradle-release
+
+To resolve these version collisions, this plugin injects a Gradle configuration file into the native Android platform project, which overrides any versions specified by other plugins, and forces them to the version specified in its Gradle file.
+
 ### Initializing the plugin
 
 _Freshchat.init_  needs to be called from _ondeviceready_  event listener to make sure the SDK is initialized before use.
@@ -338,6 +344,23 @@ cordova plugin add https://github.com/techaffinity/phonegap-plugin-push.git
 Or you can add it to your config.xml like:
 ```javascript
 <plugin name="phonegap-plugin-push" spec="https://github.com/techaffinity/phonegap-plugin-push.git">
+    <param name="SENDER_ID" value="XXXXXXXXXX" />
+</plugin>
+```
+
+To Support Android FCM Push Notification and Cordova-android versions above 7.1.0, use the below plugin 
+https://github.com/techaffinity/phonegap-plugin-push-1
+
+Changes:
+1. Removed Depreciated GCM and moved to FCM for Android
+
+It can be installed by the following command : 
+```shell
+cordova plugin add https://github.com/techaffinity/phonegap-plugin-push-1.git
+```
+Or you can add it to your config.xml like:
+```javascript
+<plugin name="phonegap-plugin-push" spec="https://github.com/techaffinity/phonegap-plugin-push-1">
     <param name="SENDER_ID" value="XXXXXXXXXX" />
 </plugin>
 ```
