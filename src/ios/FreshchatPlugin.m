@@ -272,10 +272,10 @@
     NSLog(@"Received a freshchat push notification");
     NSArray* arguments = [command arguments];
     NSDictionary* info = [arguments firstObject];
-    [self.commandDelegate runInBackground:^{
+    dispatch_async(dispatch_get_main_queue(), ^{
         [[Freshchat sharedInstance]handleRemoteNotification:info andAppstate:[UIApplication sharedApplication].applicationState];
         [self callbackToJavascriptWithoutResultForCommand:command];
-    }];
+    });
 }
 - (void) sendMessage : (CDVInvokedUrlCommand*)command {
     NSLog(@"Send Message called");
