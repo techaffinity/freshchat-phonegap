@@ -1,4 +1,3 @@
-
 package com.techaffinity.phonegap.plugins;
 
 
