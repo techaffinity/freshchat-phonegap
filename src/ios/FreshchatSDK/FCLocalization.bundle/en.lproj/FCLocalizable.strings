@@ -12,7 +12,7 @@
 "faq_feature_not_enabled_text"="FAQ feature is disabled";
 
 /* Article UpVote DownVote */
-"article_vote_prompt_text"="Did we address your concerns?";
+"article_vote_prompt_text"="Was this FAQ helpful?";
 "article_vote_prompt_yes_button_text"="Yes";
 "article_vote_prompt_no_button_text"="No";
 
@@ -23,8 +23,12 @@
 /* Article Detail */
 "offline_missing_content_text"="Please connect to the internet to view media content available on this article.";
 
+/* JWT */
+"jwt_failure_alert_message" = "Oops! Something went wrong. Please relaunch the screen.";
+
 /* No Internet Connectivity */
 "offline_internet_message"="Uh-uh. No internet connection";
+"offline_internet_sub_message"="Please check your internet connection.";
 
 /*Channels*/
 "channels_title_text"="Conversations";
@@ -62,6 +66,9 @@
 "error_message_account_not_active_text" = "This section is no longer available";
 "error_message_account_not_active_cancel" = "Cancel";
 
+/*Unsupported message content */
+"message_unsupported_content" = "Unsupported message content";
+
 /* Posting audio message alerts */
 "short_audio_alert_title" = "Your message is too short.";
 "short_audio_alert_description_text" = "The audio recording is too short. Please try again";
@@ -71,12 +78,19 @@
 
 /* Search View Place Holder */
 "search_placeholder_text"="Search FAQs";
-"search_empty_result_text"="Whoops! We couldn't find what you were looking for.";
 "empty_channel_text" = "Oops, no messages here!";
 "empty_faq_text" = "Sorry! There are no FAQs available";
 "loading_channel_text" = "Loading Messages";
 "restoring_channel_text" = "Restoring Messages";
-"loading_faq_text" = "Loading FAQs";
+"loading_faq_text" = "Loading";
+"min_character_search_text" = "Minimum 3 characters needed to search";
+
+/* New Unread Messages */
+"single_new_message_text"="%d New Message";
+"multiple_new_messages_text"="%d New Messages";
+
+/* New Message divider */
+"new_messages_divider_text"="New Messages";
 
 /* Camera Unavailable alert */
 "camera_unavailable_title"="Your camera is unavailable";
@@ -96,6 +110,9 @@
 "image_attachment_select_existing_image"="Upload from gallery";
 "image_attachment_select_new_image"="Take a picture";
 
+/*general*/
+"date_today" = "Today";
+"date_tomorrow" = "Tomorrow";
 
 /*Notifications*/
 "notification_message_default"="You've got a message!";
@@ -136,3 +153,69 @@
 "currently_replying_in_2_hours"="Currently replying in 2 hours";
 "currently_replying_in_few_hours"="Currently replying in few hours";
 
+/*Business hour offline response */
+"business_hour_offline"="We are away now";
+
+/*Drop Down Fragment*/
+"dropdown_choose_select"="Click here to select";
+
+/*Carousel*/
+"carousel_card_selected_text" = "Selected";
+"default_carousel_card_view_btn" = "View";
+"default_carousel_card_select_btn" = "Select";
+"default_carousel_list_preview_text" = "Choose an option";
+
+/*Calendar*/
+"calendar_find_slots_btn" = "Find a slot";
+"calendar_cancel_invite_btn" = "Not interested";
+
+"calendar_channel_list_awaiting_confirmation" = "Awaiting time slot confirmation";
+
+"calendar_view_title" = "Schedule a Meeting";
+"calendar_email_description" = "Kindly provide us your email address to schedule a meeting with our team";
+"calendar_email_placeholder" = "Enter your email id";
+"calendar_next_btn" = "Next";
+
+"calendar_alert_cancel_title" = "Cancel Booking";
+"calendar_cancel_alert_description" = "Are you sure you want to cancel this booking?";
+"calendar_cancel_alert_continue_btn" = "Continue";
+"calendar_cancel_alert_booking_btn" = "Cancel Booking";
+
+"calendar_slots_date_format" = "d MMM yyyy";
+"calendar_slots_time_format" = "h:mm a";
+
+"calendar_slots_session_morning" = "Morning";
+"calendar_slots_session_afternoon" = "Afternoon";
+"calendar_slots_session_evening" = "Evening";
+"calendar_slots_session_night" = "Night";
+"calendar_slots_show_more_btn" = "Show More";
+"calendar_slots_cancel_btn" = "Cancel";
+
+"calendar_no_slots_available_text" = "No Slots Available";
+
+"calendar_invite_confirm_btn" = "Confirm";
+"calendar_invite_change_slot_btn" = "Change Slot";
+
+"calendar_duration_hour" = "hour";
+"calendar_duration_hours" = "hours";
+"calendar_duration_mins" = "mins";
+
+"calendar_invite_banner_view_label" = "View";
+"calendar_invite_scheduled" = "Scheduled";
+"calendar_invite_failed" = "Failed";
+"calendar_invite_pending" = "Awaiting Confirmation";
+"calendar_invite_scheduled_description" = "Meeting with our Team";
+
+/*Error Pages*/
+"error_text" = "An error was encountered";
+"retry_button_text" = "Retry";
+"empty_article_text" = "No articles found";
+"empty_article_category_text" = "No articles found for '%@'";
+
+/*Pagination*/
+"load_more_text" = "Loading More...";
+"retry_load_more_text" = "Failed to Load. Tap to Retry.";
+"internet_retry_load_more_text" = "No Internet Connection. Tap to Retry.";
+
+/*Translation*/
+"translation_original_message_title" = "Original";
