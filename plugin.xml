@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <plugin xmlns       =   "http://www.phonegap.com/ns/plugins/1.0"
         id          =   "cordova-plugin-freshchat"
-        version     =   "1.3.0">
+        version     =   "1.2.0">
 
     <!-- Meta -->
     <name>Freshchat plugin for Phonegap</name>
@@ -46,9 +46,9 @@
             <uses-permission android:name="android.permission.CAMERA" android:required="false"/>
         </config-file>
 
-           <config-file target="AndroidManifest.xml" parent="application" mode="merge">
+            <config-file target="AndroidManifest.xml" parent="application" mode="merge">
                 <provider
-                android:name="androidx.core.content.FileProvider" android:authorities="${applicationId}.provider" android:exported="false"
+                android:name="com.techaffinity.phonegap.plugins.FileProvider" android:authorities="${applicationId}.provider" android:exported="false"
                 android:grantUriPermissions="true">
             <meta-data
                 android:name="android.support.FILE_PROVIDER_PATHS"
@@ -75,8 +75,7 @@
         
         <!-- PLUGIN HEADER AND SOURCE FILES -->
         <header-file src="src/ios/FreshchatPlugin.h" target-dir="FreshchatiOSPlugin"/>
-        <header-file src="src/ios/App-Bridging-header.h" type="BridgingHeader" />
-        <source-file src="src/ios/FreshchatPlugin.m" target-dir="FreshchatiOSPlugin" />
+        <source-file src="src/ios/FreshchatPlugin.m" target-dir="FreshchatiOSPlugin"/>
         
         <!-- Freshchat SDK -->
         
@@ -102,7 +101,7 @@
         <framework src="Photos.framework"/>
 
 
-       <framework src="FreshchatSDK" type="podspec" spec="5.0.3" />
+         <framework src="FreshchatSDK" type="podspec" spec="4.1.5"/>
         <!-- <source-file src="src/ios/FreshchatSDK/libFDFreshchatSDK.a" target-dir="FreshchatiOSPlugin" framework="true"/> -->
     </platform>
 </plugin>
