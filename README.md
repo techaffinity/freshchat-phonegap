@@ -11,85 +11,34 @@ If you do not have an account, you can get started for free at [Freshchat.com](h
 
 <!-- [Where to find AppId and AppKey](https://Freshchat.freshdesk.com/solution/articles/9000041894-where-to-find-app-id-and-app-key-) -->
 
-For platform-specific details please refer to the [Documentation](https://support.freshchat.com/support/solutions)
+For platform specific details please refer to the [Documentation](https://support.freshchat.com/support/solutions)
 
 Supported platforms :
 * Android
 * iOS
 
-**Note: This is an early version and so expect changes to the API**
+**Note : This is an early version and so expect changes to the API**
 
-### Cordova Integration :
+### Integrating the Plugin :
 
 1. Add required platforms to your PhoneGap project
 ```shell
-ionic cordova platform add android
-ionic cordova platform add ios
+cordova platform add android
+cordova platform add ios
 ```
 
 2. Add the Freshchat plugin to your project.
 
-You can add the plugin from the command line like:
-
+You can add the plugin from command line like:
 ```shell
-ionic cordova plugin add https://github.com/techaffinity/freshchat-phonegap.git
+cordova plugin add https://github.com/techaffinity/freshchat-phonegap.git
 ```
 
-3. To prevent build failures caused by including different versions of the support libraries in Android gradle. Add the below plugin
+To prevent build failures caused by including different versions of the support libraries in Android gradle. Add the below plugin
 
-  `` ionic cordova plugin add https://github.com/dpa99c/cordova-android-support-gradle-release ``
+https://github.com/dpa99c/cordova-android-support-gradle-release
 
 To resolve these version collisions, this plugin injects a Gradle configuration file into the native Android platform project, which overrides any versions specified by other plugins, and forces them to the version specified in its Gradle file.
-
-4. Incase user face the  androidx.annotation.RequiresApi import issue than add this plugin (Android only)
-  
- Add plugin to enable AndroidX in the project 
-
-  `` ionic cordova plugin add cordova-plugin-androidx ``
-
- Add plugin to patch existing plugin source that uses the Android Support Library to use AndroidX
-  
- `` ionic cordova plugin add cordova-plugin-androidx-adapter ``
-
-## Capacitor Integration
- 
-
-1. Install the Freshchat plugin to your project
-
-   `` npm install https://github.com/techaffinity/freshchat-phonegap.git ``
-   
-2. Add required platforms to your ionic project
-
-```shell
-npx cap add android
-npx cap add ios
-
-```
- To open the project in native platform IDE by  `` npx cap open android/ios ``
-
-
-3. i) To prevent build failures caused by Manifest merger follow this steps in  (Android studio)
-
-   Fix Missing File Provider Error please follow this [video](https://freshworks.wistia.com/medias/qrhrj1vzp1) steps
-   
- -  Remove the FileProvider tag called `provider`  from "/android/capacitor-cordova-android-plugins/src/main/AndroidManifest.xml
-   
- - In app Manifest.xml (android/app/src/main/AndroidManifest.xml) just replace the Provider code from video and "android:authorities" it should be your app id Ex:(xxx.xxxx.xxx.provider) 
-   
- - add the String value in string.xml (android/app/src/main/res/values)
-    
-       `` <string name="freshchat_file_provider_authority">xxx.xxxx.xxx.provider</string> ``
-       
-   ii) To prevent build failures caused by '.h file not found ' follow these steps in (Xcode)
-
- - Add the `` pod 'FreshchatSDK' `` in the pod file then open the terminal in the ios/app folder and install the pod ``pod install``  reopen the Xcode 
- 
- - once install the Freshchat SDK then we have to move the plugin files to the main app folder
- 
-   we can find the "Freshchat" folder in pods/Development_pods/Cordovaplugins/Freshchat and move the three files to the app/app folder in Xcode  
-   
- - Add the App-Bridging-header.h file path to  build setting -> swift compiler General -> Objective-c Bridging Header in Xcode
-
 
 ### Initializing the plugin
 
@@ -198,9 +147,9 @@ document.getElementById("launch_conversations").onclick = showSupportChat;
         articleType   : Freshchat.FilterType.ARTICLE
     });
     ```
-    Not specifying an article type, by default filters by Article.
+    Not specifying an articleType, by default filters by Article.
     
-    Filtering FAQ categories are available.
+    Filtering FAQ categores is available.
     Eg. To filter and display a set of categories tagged with *sample* and *video* ,
     ```javascript
     window.Freshchat.showFAQs( {
@@ -261,7 +210,7 @@ view filtered by the tag "test".
 * Freshchat.clearUserData()
     - Clear user data when users logs off your app.
 
-You can pass in an optional callback function to an API as the last parameter, which gets called when the native API is completed. 
+You can pass in an optional callback function to an API as the last parameter, which gets called when native API is completed. 
 Eg.
 ```javascript
 window.Freshchat.unreadCount(function(success,val) {
@@ -314,22 +263,22 @@ window.Freshchat.unreadCountlistenerUnregister(function(success,val) {
 
 * Restore user and chat messages across device/platforms/sessions
 
-For retaining the chat messages across devices/sessions/platforms, the mobile app needs to pass the same external id and restore the id combination for the user. This will allow users to seamlessly pick up the conversation from any of the supported platforms - Android, iOS, and Web.
+For retaining the chat messages across devices/sessions/platforms, the mobile app needs to pass the same external id and restore id combination for the user. This will allow users to seamlessly pick up the conversation from any of the supported platforms - Android, iOS and Web.
 
 
 
-External Id - This should (ideally) be a unique identifier for the user from your systems like a user id or email id etc and is set using Freshchat.identifyUser() API. This cannot be changed once set for the user
+External Id - This should (ideally) be an unique identifier for the user from your system like a user id or email id etc and is set using the Freshchat.identifyUser() API. This cannot be changed once set for the user
 
 
 
-Restore Id - This is generated by Freshchat for the current user, given an external id was set and can be retrieved anytime using the Freshchat.getUser().getRestoreId() API. The app is responsible for storing and later presenting the combination of external id and restore id to the Freshchat SDK to continue the chat conversations across sessions on the same device or across devices and platforms.
+Restore Id - This is generated by Freshchat for the current user, given an external id was set and can be retrieved anytime using the Freshchat.getUser().getRestoreId() API. The app is responsible for storing and later present the combination of external id and restore id to the Freshchat SDK to continue the chat conversations across sessions on same device or across devices and platforms.
 
 
 
-Note 1: Restore Id for a user is typically generated only when the user has sent a message.
+Note 1 : Restore Id for a user is typically generated only when user has sent a message.
 
 
-Note 2: Notifications are supported in only one mobile device at any point in time and are currently the last restored device or device with the last updated push token
+Note 2 : Notifications are supported in only one mobile device at any point in time and is currently the last restored device or device with last updated push token
 
 
 
@@ -386,7 +335,7 @@ Eg.
 
 #### Push Notifications
 ##### 1. Recommended Option
-To setup push notifications we recommend using our forked version of the phonegap-plugin-push available [here] (https://github.com/techaffinity/phonegap-plugin-push).
+To setup push notifications we recommend using our forked version of the phonegap-plugin-push available [here] (https://github.com/techaffinity/phonegap-plugin-push) .
 
 It can be installed by the following command : 
 ```shell
@@ -464,11 +413,11 @@ push.on('notification', function(data) {
 ##### Push Notification Customizations
 Android notifications can be customized with the *updateAndroidNotificationProperties* API. Following is a list of properties that can be customized.
 
--  "notificationSoundEnabled" : Notification sound enabled or not.
--  "smallIcon": Setting a small notification icon (move the image to the drawable folder and pass the name of the jpeg file as a parameter).
--  "large icon": setting a large notification icon.
--  "notification priority": set the priority of notification through Freshchat.
--  "launchActivityOnFinish": Activity to launch on up navigation from the messages screen launched from notification. The messages screen will have no activity to navigate up to in the back stack when it's launched from notification. Specify the activity class name to be launched.
+-  "notificationSoundEnabled" : Notifiction sound enabled or not.
+-  "smallIcon" : Setting a small notification icon (move the image to drawbles folder and pass the name of the jpeg file as parameter).
+-  "largeIcon" : setting a large notification icon.
+-  "notificationPriority" : set the priority of notification through Freshchat.
+-  "launchActivityOnFinish" : Activity to launch on up navigation from the messages screen launched from notification. The messages screen will have no activity to navigate up to in the backstack when its launched from notification. Specify the activity class name to be launched.
 
 
 The API can be invoked as below:
@@ -490,7 +439,7 @@ Options for *notificationPriority* are as below:
 -  Freshchat.NotificationPriority.PRIORITY_MAX
 -  Freshchat.NotificationPriority.PRIORITY_MIN
 
-This follows the same priority order as Android's NotificaitonCompat class.
+This follow the same priority order as Android's NotificaitonCompat class.
 
 #### Restore User
 ```javascript
@@ -499,7 +448,7 @@ This follows the same priority order as Android's NotificaitonCompat class.
         restoreId: "USER_RESTORE_ID"
     });
 ```
-Note: If the user does not have restoreId, call identifyUser() with just externalId.
+Note: If user does not have restoreId, call identifyUser() with just externalId.
 
 #### Caveats
 

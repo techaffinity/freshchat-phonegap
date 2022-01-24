@@ -9,91 +9,18 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
-/*
- * Enum for FAQ filter type
- */
 enum TagFilterType {
     ARTICLE  = 1,
     CATEGORY = 2
 };
 
-/*
- * Events Enum for freshchat screen
- */
-typedef enum {
-    FCEventFAQCategoryListOpen,
-    FCEventFAQListOpen,
-    FCEventFAQOpen,
-    FCEventBotFAQOpen,
-    FCEventFAQSearch,
-    FCEventFAQVote,
-    FCEventBotFAQVote,
-    FCEventChannelListOpen,
-    FCEventMessageSent,
-    FCEventConversationOpen,
-    FCEventCSatOpen,
-    FCEventCSatSubmit,
-    FCEventCSatExpiry,
-    FCEventLinkTap,
-    FCEventScreenView,
-    FCEventMessageReceive,
-    FCEventNotificationReceive,
-    FCEventIdTokenStatusChange,
-    FCEventDropDownReceive,
-    FCEventDropDownSelect,
-    FCEventCarouselShow,
-    FCEventCarouselSelect,
-    FCEventShowOriginalClick,
-    FCEventHideOriginalClick,
-    FCEventCarouselView,
-    FCEventCalendarFindTimeSlotClick,
-    FCEventCalendarInviteCancel,
-    FCEventCalendarNoTimeSlotFound,
-    FCEventCalendarBookingSuccess,
-    FCEventCalendarBookingRetry,
-    FCEventCalendarBookingFailure
-} FCEvent;
-
-/*
- * Parameter enums for events
- */ 
-typedef enum {
-    FCPropertyBotFAQReferenceId,
-    FCPropertyBotFAQPlaceholderReferenceId,
-    FCPropertyFAQCategoryID,
-    FCPropertyFAQCategoryName,
-    FCPropertyBotFAQTitle,
-    FCPropertyBotFAQFeedback,
-    FCPropertyFAQID,
-    FCPropertyFAQTitle,
-    FCPropertySearchKey,
-    FCPropertySearchFAQCount,
-    FCPropertyChannelID,
-    FCPropertyChannelName,
-    FCPropertyConversationID,
-    FCPropertyIsHelpful,
-    FCPropertyIsRelevant,
-    FCPropertyInputTags,
-    FCPropertyRating,
-    FCPropertyResolutionStatus,
-    FCPropertyComment,
-    FCPropertyURL,
-    FCPropertyOption,
-    FCPropertyInviteId
-} FCEventProperty;
-
-
 #define FRESHCHAT_DID_FINISH_PLAYING_AUDIO_MESSAGE @"com.freshworks.freshchat_play_inapp_audio"
 #define FRESHCHAT_WILL_PLAY_AUDIO_MESSAGE @"com.freshworks.freshchat_pause_inapp_audio"
 #define FRESHCHAT_USER_RESTORE_ID_GENERATED @"com.freshworks.freshchat_user_restore_id_generated"
-#define FRESHCHAT_SET_TOKEN_TO_REFRESH_DEVICE_PROPERTIES @"com.freshworks.freshchat_set_token_to_refresh_device_properties"
 #define FRESHCHAT_USER_LOCALE_CHANGED @"com.freshworks.freshchat_user_locale_changed"
 #define FRESHCHAT_UNREAD_MESSAGE_COUNT_CHANGED @"com.freshworks.freshchat_unread_message_count_changed"
-#define FRESHCHAT_EVENTS @"com.freshworks.freshchat_events"
 
 @class FreshchatConfig, FreshchatUser, FAQOptions, ConversationOptions, FreshchatMessage;
-
-NS_ASSUME_NONNULL_BEGIN
 
 @interface FreshchatConfig : NSObject
 
@@ -116,11 +43,11 @@ NS_ASSUME_NONNULL_BEGIN
  * theme plist file's name. Freshchat needs this for theming to work.
  * The setter throws an exception for an invalid filename
  */
-@property (nonatomic, strong, nullable) NSString *themeName;
+@property (nonatomic, strong) NSString *themeName;
 /**
  * Option to supply the SDK with a strings bundle for localization
  */
-@property (nonatomic, strong, nullable) NSString *stringsBundle;
+@property (nonatomic, strong) NSString *stringsBundle;
 /*
  * Allow the user to attach images using the gallery. Defaults to YES.
  */
@@ -141,18 +68,6 @@ NS_ASSUME_NONNULL_BEGIN
  * Enable/Disable Notification banner when a support message is received. Defaults to YES
  */
 @property (nonatomic, assign) BOOL showNotificationBanner;
-/*
- * Show/Hide Channel response time on the chat. Defaults to YES
- */
-@property (nonatomic, assign) BOOL responseExpectationVisible;
-/*
- * Enable/Disable application events with Freshchat. Default to YES
- */
-@property (nonatomic, assign) BOOL eventsUploadEnabled;
-/*
- * Enable/Disable Freshchat remote logs. Default to YES
- */
-@property (nonatomic, assign) BOOL errorLogsEnabled;
 
 /**
  *  Initialize Freshchat.
@@ -229,7 +144,6 @@ NS_ASSUME_NONNULL_BEGIN
  *
  */
 -(void)showFAQs:(UIViewController *)controller withOptions:(FAQOptions *)options;
-
 /**
  *  Set user Info
  *
@@ -239,28 +153,6 @@ NS_ASSUME_NONNULL_BEGIN
  *
  */
 -(void)setUser:(FreshchatUser *) user;
-
-/**
- *  Get user Alias
- *
- *  @discussion This method lets you to get user Id in Strict Mode for setting up JWT paload
- *
- */
-- (NSString *) getFreshchatUserId;
-
-/*
- * Set user for JWT Auth strict mode
- *
- * Sync any change to user information, specified in JWT Token with Freshchat
- *
- */
-- (void)setUserWithIdToken :(NSString *) jwtIdToken;
-
-/*
- * In Auth Strict Mode get status of User Auth Token
- */
-- (NSString *)getUserIdTokenStatus;
-
 /**
 *  Restore User
 *
@@ -272,16 +164,7 @@ NS_ASSUME_NONNULL_BEGIN
 *  @param restoreID Set the restore id for the user, to lookup and restore the user across devices/sessions/platforms
 *
 */
--(void)identifyUserWithExternalID:(NSString *) externalID restoreID:(nullable NSString *) restoreID;
-
-/**
- * Identify and restore an user base on reference_id and can only be called in auth strict mode
- *
- * @param jwtIdToken Set a valid Id Token for the current user signed with your account key(s)
- *
- */
--(void)restoreUserWithIdToken:(NSString *) jwtIdToken;
-
+-(void)identifyUserWithExternalID:(NSString *) externalID restoreID:(NSString *) restoreID;
 /**
  *  Clear User Data
  *
@@ -292,7 +175,7 @@ NS_ASSUME_NONNULL_BEGIN
  * @param Completion block to be called when clearData is completed
  *
  */
--(void)resetUserWithCompletion:(nullable void (^)())completion;
+-(void)resetUserWithCompletion:(void (^)())completion;
 /**
  *  Set User properties
  *
@@ -301,7 +184,7 @@ NS_ASSUME_NONNULL_BEGIN
  *  @param props An NSDictionary containing the Properties for the User.
  *
  */
--(void)setUserProperties:(NSDictionary<NSString *, NSString*> *)props;
+-(void)setUserProperties:(NSDictionary*)props;
 /**
  *  Set user property
  *
@@ -322,17 +205,6 @@ NS_ASSUME_NONNULL_BEGIN
  *
  */
 -(void)setPushRegistrationToken:(NSData *) deviceToken;
-/**
- *  Open Freshchat Deeplink
- *
- *  @discussion Handle freshchat channels,faq deeplink and present in viewController
- *
- *  @param linkStr Freshchat Deeplink String
- *
- *  @param viewController present Freshchat Screen from above the view Controller
- *
- */
--(void) openFreshchatDeeplink:(NSString *)linkStr viewController:(UIViewController *) viewController;
 /**
  *  Check if a push notification was from Freshchat
  *
@@ -406,7 +278,7 @@ NS_ASSUME_NONNULL_BEGIN
  *  @param completion Completion block with count.
  *
  */
--(void)unreadCountForTags:(nullable NSArray *)tags withCompletion:(void(^)(NSInteger count))completion;
+-(void)unreadCountForTags:(NSArray *)tags withCompletion:(void(^)(NSInteger count))completion;
 
 /**
  *  Show custom banner for users in message screen
@@ -419,31 +291,9 @@ NS_ASSUME_NONNULL_BEGIN
 -(void) sendMessage:(FreshchatMessage *)messageObject;
 
 /**
- *  Tracking custom events performed by user in Application
- *
- *  @discussion This methods lets you to track user events performed into your app and will be available in Freshchat's agent portal
- *
- *  @param name - Name of the event
- *  @param properties - Properties added for an event
- **/
-- (void) trackEvent : (NSString *) name withProperties : (NSDictionary<NSString*, id> *) properties;
-
-/**
  *  Dismiss SDK for deeplink screens
  */
 -(void) dismissFreshchatViews;
-
-/**
- *  Code block for handling links. Return 'YES' to override default link behaviour and 'NO' to handle it on the block itself.
- */
-
-@property (nullable, nonatomic, copy) BOOL(^customLinkHandler)(NSURL*);
-
-/**
- *  Code block for push notification tap events . Return 'YES' to not allow channel open and 'NO' to launch the coresponding channel.
- */
-
-@property (nullable, nonatomic, copy) BOOL(^onNotificationClicked)(NSString*);
 
 @end
 
@@ -453,31 +303,31 @@ NS_ASSUME_NONNULL_BEGIN
 /*
  * User first name
  */
-@property (strong, nonatomic, nullable) NSString *firstName;
+@property (strong, nonatomic) NSString *firstName;
 /*
  * User last name
  */
-@property (strong, nonatomic, nullable) NSString *lastName;
+@property (strong, nonatomic) NSString *lastName;
 /*
  * User email
  */
-@property (strong, nonatomic, nullable) NSString *email;
+@property (strong, nonatomic) NSString *email;
 /*
  * Phone Number - Preferably Mobile Number
  */
-@property (strong, nonatomic, nullable) NSString *phoneNumber;
+@property (strong, nonatomic) NSString *phoneNumber;
 /*
  * Phone Country Code e.g +91 for India
  */
-@property (strong, nonatomic, nullable) NSString *phoneCountryCode;
+@property (strong, nonatomic) NSString *phoneCountryCode;
 /*
  * Unique identifier for the user.
  */
-@property (strong, nonatomic, readonly, nullable) NSString *externalID;
+@property (strong, nonatomic, readonly) NSString *externalID;
 /*
  * Restore id for user
  */
-@property (strong, nonatomic, readonly, nullable) NSString *restoreID;
+@property (strong, nonatomic, readonly) NSString *restoreID;
 
 /*
  * Access the user info. If update user was called earlier, the instance would contain the persisted values.
@@ -507,11 +357,6 @@ NS_ASSUME_NONNULL_BEGIN
  * Default set to NO which hides "contact us" button on the navigation bar
  */
 @property (nonatomic) BOOL showContactUsOnAppBar;
-/*
- * Option to show conversation link on article rating bar for Negative response,
- * Default set to YES which shows conversation link there
- */
-@property (nonatomic) BOOL showContactUsOnFaqNotHelpful;
 /**
  *  @discussion This method lets you to filter the list of Categories or Articles by tags
  *
@@ -521,7 +366,7 @@ NS_ASSUME_NONNULL_BEGIN
  *
  *  @param Type can be either Category or Article determining what to show. ( list of filtered articles or categories)
  */
--(void) filterByTags: (nullable NSArray *) tags withTitle:(nullable NSString *) title  andType : (enum TagFilterType) type;
+-(void) filterByTags:(NSArray *) tags withTitle:(NSString *) title  andType : (enum TagFilterType) type;
 
 /**
  *  @discussion This method lets you to filter the list of Channels by tags when user clicks on contact us
@@ -530,19 +375,19 @@ NS_ASSUME_NONNULL_BEGIN
  *
  *  @param Title for the list of filtered channels view
  */
--(void)filterContactUsByTags:(nullable NSArray *) tags withTitle:(nullable NSString *) title;
+-(void)filterContactUsByTags:(NSArray *) tags withTitle:(NSString *) title;
  
 /**
  *  Preferred navigation bar title
  */
--(nullable NSString *)filteredViewTitle;
+-(NSString *)filteredViewTitle;
 
 /**
  *  List of tags you have supplied already
  *
  *  @discussion List of tags which are configured in portal
  */
--(nullable NSArray *)tags;
+-(NSArray *)tags;
 
 /**
  *  Tags Filter type - FAQ's or Articles tags
@@ -552,12 +397,12 @@ NS_ASSUME_NONNULL_BEGIN
 /**
  *  Tags used to filter channels when clicking on "Contact Us" on FAQ screens
  */
--(nullable NSArray *) contactUsTags;
+-(NSArray *) contactUsTags;
 
 /**
  *  Title for the list of filtered channels view which clicking "Contact Us"
  */
--(nullable NSString *) contactUsTitle;
+-(NSString *) contactUsTitle;
 
 @end
 
@@ -574,53 +419,17 @@ NS_ASSUME_NONNULL_BEGIN
  *  @param Title for the list of filtered channels view
  *
  */
--(void)filterByTags:(nullable NSArray *)tags withTitle:(nullable NSString *)title;
+-(void)filterByTags:(NSArray *)tags withTitle:(NSString *)title;
 
 /**
  *  Preferred navigation bar title for filtered view of channels
  */
--(nullable NSString *)filteredViewTitle;
+-(NSString *)filteredViewTitle;
 
 /**
  *  Tags used for filtering the channels list
  */
--(nullable NSArray *)tags;
-
-@end
-
-/**
- * Events handling with Freshchat
- */
-@interface FreshchatEvent: NSObject
-
-/**
- * Event name for Freshchat screen
- */
-@property (nonatomic, assign) FCEvent name;
-
-/*
- * Parameter dictionary for a Freshchat screen's event
- */
-@property (nullable, strong, nonatomic) NSDictionary *properties;
-
-/**
- * Freshchat screens's event value
- *
- * @discussion this method lets you to get value for a Freshchat event property
- *
- * @param Enum parameter key for event
- *
- */
-- (nullable id) valueForEventProperty : (FCEventProperty) property;
-
-
-/**
- * Freshchat screen's event name in String
- *
- * @discussion this method lets you to get string value of the Freshchat event
- *
- */
-- (NSString *) getEventName;
+-(NSArray *)tags;
 
 @end
 
@@ -647,5 +456,3 @@ NS_ASSUME_NONNULL_BEGIN
 -(instancetype)initWithMessage:(NSString *)message andTag:(NSString *)tag;
 
 @end
-
-NS_ASSUME_NONNULL_END
