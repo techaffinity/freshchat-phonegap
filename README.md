@@ -67,9 +67,11 @@ npx cap add ios
 ```
  To open the project in native platform IDE by  
  
- `` npx cap open android
- npx cap open ios
- ``
+ ``` 
+    npx cap open android
+    npx cap open ios
+    
+ ```
 
 
 3.  **Android**, To prevent build failures caused by Manifest merger follow this steps in  (Android studio) 
