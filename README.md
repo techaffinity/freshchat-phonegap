@@ -56,7 +56,7 @@ To resolve these version collisions, this plugin injects a Gradle configuration 
 
 1. Install the Freshchat plugin to your project
 
-   `` npm install https://github.com/techaffinity/freshchat-phonegap.git ``
+   `` npm install https://github.com/techaffinity/freshchat-phonegap.git#SDK_Update ``
    
 2. Add required platforms to your ionic project
 
