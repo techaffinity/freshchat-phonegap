@@ -65,10 +65,14 @@ npx cap add android
 npx cap add ios
 
 ```
- To open the project in native platform IDE by  `` npx cap open android/ios ``
+ To open the project in native platform IDE by  
+ 
+ `` npx cap open android
+ npx cap open ios
+ ``
 
 
-3. i) To prevent build failures caused by Manifest merger follow this steps in  (Android studio)
+3.  **Android**, To prevent build failures caused by Manifest merger follow this steps in  (Android studio) 
 
    Fix Missing File Provider Error please follow this [video](https://freshworks.wistia.com/medias/qrhrj1vzp1) steps
    
@@ -76,19 +80,24 @@ npx cap add ios
    
  - In app Manifest.xml (android/app/src/main/AndroidManifest.xml) just replace the Provider code from video and "android:authorities" it should be your app id Ex:(xxx.xxxx.xxx.provider) 
    
- - add the String value in string.xml (android/app/src/main/res/values)
-    
-       `` <string name="freshchat_file_provider_authority">xxx.xxxx.xxx.provider</string> ``
-       
-   ii) To prevent build failures caused by '.h file not found ' follow these steps in (Xcode)
+ - Add the String value in string.xml (android/app/src/main/res/values)
 
- - Add the `` pod 'FreshchatSDK' `` in the pod file then open the terminal in the ios/app folder and install the pod ``pod install``  reopen the Xcode 
+  `` <string name="freshchat_file_provider_authority">xxx.xxxx.xxx.provider</string> ``
+  
+ - Once done now the app build successfully Android studio
+        
+       
+    **IOS**, To prevent build failures caused by '.h file not found ' follow these steps in (Xcode)
+
+ - Open Xcode Add the `` pod 'FreshchatSDK' `` in the pod file then open the terminal in the ios/app folder and install the pod ``pod install``  reopen the Xcode 
  
- - once install the Freshchat SDK then we have to move the plugin files to the main app folder
+ - Once install the Freshchat SDK then we have to move the plugin files to the main app folder
  
-   we can find the "Freshchat" folder in pods/Development_pods/Cordovaplugins/Freshchat and move the three files to the app/app folder in Xcode  
+   you can find the "Freshchat" folder in pods/Development_pods/Cordovaplugins/Freshchat and move(cut) the three files to the app/app folder in Xcode  
    
  - Add the App-Bridging-header.h file path to  build setting -> swift compiler General -> Objective-c Bridging Header in Xcode
+ 
+ - Once done now the app build successfully in xcode
 
 
 ### Initializing the plugin
